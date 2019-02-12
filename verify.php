@@ -5,7 +5,7 @@
  * https://github.com/email-verifier/verifier-php
  */
 
-public function verifyEmail($email = null, $access_token, $details = false)
+function verifyEmail($email = null, $access_token, $details = false)
 {
     $ch = curl_init();
 
