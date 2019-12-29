@@ -23,7 +23,7 @@ function verifyEmail($email = null, $access_token, $details = false)
     if ($details) {
         return json_decode($result);
     } else {
-        $data = json_decode($result);
+        $data = json_decode($result, true);
         return $data['status'];
     }
 }
