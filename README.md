@@ -1,21 +1,70 @@
-# verifier-php
-Official PHP Library for verifier.meetchopra.com
+# Email Verifier PHP Library
 
-# Installation
+A PHP library for validating emails using the VerifyRight API. Checks for non-existent emails, invalid domains, and disposable email addresses.
 
-```git clone https://github.com/email-verifier/verifier-php.git```
+## Installation
 
-or you can copy the `verify.php` file and add it to your project directory.
+Install via Composer:
 
-# Usage
-Verifier-php is email library in php for validating non-exsistent, invalid domain, disposable emails. [Know more](https://verifier.meetchopra.com)
+```bash
+composer require email-verifier/verifier-php
+```
 
+## Usage
 
-Below is the example of how to use the library
+Basic usage:
 
 ```php
-require('path/to/verify.php')
+use EmailVerifier\EmailVerifier;
 
-verifyEmail("email@example.com", "ACCESS_TOKEN"); # For boolean response
-verifyEmail("email@example.com", "ACCESS_TOKEN", true); # For detailed response
+// Initialize with your API token
+$verifier = new EmailVerifier('YOUR_ACCESS_TOKEN');
+
+// Simple verification (returns true/false)
+try {
+    $isValid = $verifier->verifyEmail('test@example.com');
+} catch (InvalidArgumentException $e) {
+    // Handle invalid email format
+    echo "Invalid email format: " . $e->getMessage();
+} catch (RuntimeException $e) {
+    // Handle API errors
+    echo "API error: " . $e->getMessage();
+}
+
+// Get detailed verification results
+try {
+    $details = $verifier->verifyEmail('test@example.com', true);
+    /*
+    Returns array with:
+    {
+        "status": "valid",
+        "domain": "example.com",
+        "is_disposable": false,
+        "is_role_account": false
+    }
+    */
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+}
 ```
+
+## Features
+
+- Email format validation
+- Domain existence check
+- Disposable email detection
+- Role account detection
+- Detailed verification results
+- Modern PHP 7.4+ support
+- Exception handling
+- PSR-4 autoloading
+
+## Requirements
+
+- PHP 7.4 or higher
+- curl extension
+- json extension
+
+## License
+
+MIT License

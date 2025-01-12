@@ -1,0 +1,31 @@
+{
+    "name": "email-verifier/verifier-php",
+    "description": "VerifyRight Email Verification Library for PHP",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "VerifyRight",
+            "email": "support@verifyright.co"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EmailVerifier\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EmailVerifier\\Tests\\": "tests/"
+        }
+    }
+} 
